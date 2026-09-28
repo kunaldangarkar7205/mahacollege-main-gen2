@@ -57736,7 +57736,7 @@ const DIRECTORY_SOURCE = "Maharashtra State CET Cell — Institute-Wise Allotmen
    information when those details have been verified. Unknown values are left explicit
    rather than invented. */
 const DEFAULT_CET_PROFILE = id => `https://fe2026.mahacet.org/StaticPages/frmInstituteSummary?InstituteCode=${id}`;
-COLLEGES.forEach(c => {
+window.COLLEGES.forEach(c => {
   const cet = DEFAULT_CET_PROFILE(c.id);
   c.profile = {
     overview: `${c.name} is a participating Maharashtra engineering institute in the 2026-27 State CET Cell directory. Institute code: ${c.id}. Status: ${c.status}. University/affiliation recorded in the CET directory: ${c.university}.`,
@@ -57756,7 +57756,7 @@ COLLEGES.forEach(c => {
 });
 
 /* Verified expanded profile for M.G.M.'s College of Engineering and Technology, Kamothe. */
-const mgm = COLLEGES.find(c => c.id === "03175");
+const mgm = window.COLLEGES.find(c => c.id === "03175");
 if (mgm) {
   mgm.profile = {
     overview: "M.G.M.'s College of Engineering and Technology is an engineering institute at MGM Educational Campus, Sector 1, Kamothe, Navi Mumbai. The CET Cell lists institute code 03175 and Mumbai University affiliation in its 2026-27 institute summary.",

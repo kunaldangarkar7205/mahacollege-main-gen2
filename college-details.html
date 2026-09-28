@@ -17,7 +17,8 @@ const rows=(c.cutoffs||[]).filter(x=>[3,4,5,6].some(i=>typeof x[i]==='number'));
 const branchSet=[...new Set((c.branches||[]).map(String))];
 const values=rows.flatMap(x=>[3,4,5,6].map(i=>x[i]).filter(v=>typeof v==='number'));
 const min=values.length?Math.min(...values):null,max=values.length?Math.max(...values):null;
-const sourceLinks=(p.sources||[]).map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">Official source ${i+1} ↗</a>`).join('');
+const sourceList=Array.isArray(p.sources)?p.sources:[];
+const sourceLinks=sourceList.map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">Official source ${i+1} ↗</a>`).join('');
 const cutoffRows=rows.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td><td>${esc(x[2])}</td><td>${num(x[6])}</td><td>${num(x[5])}</td><td>${num(x[4])}</td><td>${num(x[3])}</td></tr>`).join('');
 
 document.title=(c.shortName||c.name)+' - MahaCollege';
