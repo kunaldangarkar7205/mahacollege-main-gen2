@@ -5,7 +5,7 @@
    Cutoff row format: [branch, category, seatPool, CAP4, CAP3, CAP2, CAP1].
    H/O/State/AI identifies Home-University / Other-than-Home-University / State-Level / All-India seat pools.
 */
-const COLLEGES = [
+window.COLLEGES = [
   {
     "id": "03175",
     "name": "M.G.M.'s College of Engineering and Technology",

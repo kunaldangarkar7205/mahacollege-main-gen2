@@ -33,12 +33,13 @@
 <script src="cap-cutoff-sources.js"></script>
 <script>
 const ROUND_INFO={cap1:{label:'CAP Round 1',index:6},cap2:{label:'CAP Round 2',index:5},cap3:{label:'CAP Round 3',index:4},cap4:{label:'CAP Round 4',index:3}};
-const collegeList=Array.isArray(window.COLLEGES)?window.COLLEGES:(typeof COLLEGES!=='undefined'?COLLEGES:[]);
+const collegeList=Array.isArray(window.COLLEGES)?window.COLLEGES:[];
 const branches=[...new Set(collegeList.flatMap(c=>[...(Array.isArray(c.branches)?c.branches:[]),...(Array.isArray(c.cutoffs)?c.cutoffs.map(x=>x&&x[0]).filter(Boolean):[])]))].sort((a,b)=>a.localeCompare(b));
 const locations=[...new Set(collegeList.flatMap(c=>[c.city,c.district]).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
 document.getElementById('branch').innerHTML='<option value="">Any Branch</option>'+branches.map(b=>'<option value="'+escapeHtml(b)+'">'+escapeHtml(b)+'</option>').join('');
 if(!branches.length){document.getElementById('branch').innerHTML='<option value="">Any Branch</option>'; }
 document.getElementById('region').innerHTML='<option value="">Any Location</option>'+locations.map(x=>'<option value="'+escapeHtml(x)+'">'+escapeHtml(x)+'</option>').join('');
+if(!collegeList.length){ console.error('MahaCollege: college-data.js did not load or contains no colleges.'); }
 function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
 function normalizeCategory(value){
  const v=String(value||'').trim().toUpperCase().replace(/\s+/g,' ');

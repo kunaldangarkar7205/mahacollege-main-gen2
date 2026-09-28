@@ -10,7 +10,7 @@
 <nav><div class="logo">🎓 MahaCollege</div><div class="menu"><a href="index.html">Home</a><a href="find-colleges.html">Colleges</a><a href="category-cutoffs.html">Cutoffs</a><a href="college-predictor.html">Predictor</a><a href="compare-colleges.html">Compare</a><a href="notifications.html">Notifications</a><a href="login.html" class="login-btn">Login</a></div></nav>
 <main class="details-page" id="details"></main>
 <script src="college-data.js"></script><script>
-const q=new URLSearchParams(location.search), id=q.get('id'), c=COLLEGES.find(x=>x.id===id)||COLLEGES[0], p=c.profile||{};
+const q=new URLSearchParams(location.search), id=q.get('id'), list=Array.isArray(window.COLLEGES)?window.COLLEGES:[], c=list.find(x=>x.id===id)||list[0], p=c?.profile||{};
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const num=v=>typeof v==='number'?v.toFixed(2):'—';
 const rows=(c.cutoffs||[]).filter(x=>[3,4,5,6].some(i=>typeof x[i]==='number'));
