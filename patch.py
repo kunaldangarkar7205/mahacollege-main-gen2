@@ -1,0 +1,77 @@
+from pathlib import Path
+import re, json
+
+p=Path('/mnt/data/work_details/college-data.js')
+s=p.read_text()
+# Insert verified total intake after each university field, once.
+intakes={
+'03175':870,'03182':540,'03154':600,'03176':1680,'03139':720,'03146':600,'03012':540,'06175':1050,
+'01012':300,'01101':420,'01002':390,'01005':60,'01105':900,'01107':840,'01114':720,'01116':480,'01117':480,'01120':390,
+'02008':360,'02015':180,'02020':610,'02113':1530,'02114':720,'02127':720,'02129':480,'02130':420,'02131':240,'02533':840,
+'03014':180,'03033':558,'03036':209,'03042':300,'03135':480,'03147':390,'03148':840,'03183':570,'03184':480,'03185':720,
+'03187':960,'03189':540,'03190':780,'03194':720,'03196':780,'03197':480,'03198':300,'03199':1140,'03201':360,'03203':480,
+'03204':660,'03208':360,'03209':480,'03211':660,'03215':480,'03218':540,'03221':420,'03223':600,'03257':300,'03475':780,'03477':300,
+'04004':330,'04025':300,'04116':1380
+}
+for cid,total in intakes.items():
+    pat=r'("id": "'+re.escape(cid)+r'"[\s\S]*?"university": "[^"]*",)'
+    m=re.search(pat,s)
+    if not m: raise SystemExit('missing '+cid)
+    block=m.group(1)
+    if '"totalIntake"' not in s[m.start():m.end()+100]:
+        s=s[:m.end()]+'\n    "totalIntake": '+str(total)+','+s[m.end():]
+p.write_text(s)
+
+# Replace details page with a fuller, data-first version.
+d=Path('/mnt/data/work_details/college-details.html')
+html=r'''<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Details - MahaCollege</title><link rel="stylesheet" href="style.css">
+<style>
+.details-page{max-width:1200px;margin:35px auto;padding:24px}.hero-card,.details-section{background:var(--card-bg,#fff);padding:26px;border-radius:16px;margin-bottom:20px;box-shadow:0 4px 18px rgba(0,0,0,.06);border:1px solid rgba(100,116,139,.15)}
+.hero-card h1{margin:0 0 10px;line-height:1.25}.hero-meta{color:#64748b;margin:7px 0}.badges span{display:inline-block;background:#eef2ff;color:#1e3a8a;padding:7px 10px;border-radius:20px;margin:4px;font-size:13px}.profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.profile-item{border:1px solid #e5e7eb;border-radius:12px;padding:17px;background:rgba(248,250,252,.75)}.profile-item h3{margin:0 0 8px;font-size:16px}.profile-item p{margin:0;line-height:1.55;color:#334155}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{padding:16px;border-radius:12px;background:#f8fafc}.stat b{display:block;font-size:21px;margin-bottom:5px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:10px;border:1px solid #e2e8f0;text-align:left}th{background:#172554;color:#fff}.links a,.action-btn{display:inline-block;margin:6px 8px 0 0;padding:9px 12px;border-radius:8px;text-decoration:none;background:#2864e6;color:#fff}.secondary{background:#475569!important}.source{font-size:13px;color:#64748b}.notice{padding:14px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a}.empty{padding:18px;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px}.branch-list{columns:2;column-gap:35px;margin:0;padding-left:20px}.branch-list li{margin:6px 0}.back{margin-bottom:14px;display:inline-block}.verified{color:#047857;font-weight:700}.cutoff-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.summary-box{padding:14px;border-radius:10px;background:#f8fafc}.summary-box b{display:block;font-size:18px}
+@media(max-width:800px){.profile-grid,.stat-grid,.cutoff-summary{grid-template-columns:1fr}.details-page{padding:14px;margin:15px auto}.hero-card,.details-section{padding:18px}.branch-list{columns:1}}
+</style></head>
+<body id="auth-protected-page">
+<nav><div class="logo">🎓 MahaCollege</div><div class="menu"><a href="index.html">Home</a><a href="find-colleges.html">Colleges</a><a href="category-cutoffs.html">Cutoffs</a><a href="college-predictor.html">Predictor</a><a href="compare-colleges.html">Compare</a><a href="notifications.html">Notifications</a><a href="login.html" class="login-btn">Login</a></div></nav>
+<main class="details-page" id="details"></main>
+<script src="college-data.js"></script><script>
+const q=new URLSearchParams(location.search), id=q.get('id'), c=COLLEGES.find(x=>x.id===id)||COLLEGES[0], p=c.profile||{};
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const num=v=>typeof v==='number'?v.toFixed(2):'—';
+const rows=(c.cutoffs||[]).filter(x=>[3,4,5,6].some(i=>typeof x[i]==='number'));
+const branchSet=[...new Set((c.branches||[]).map(String))];
+const values=rows.flatMap(x=>[3,4,5,6].map(i=>x[i]).filter(v=>typeof v==='number'));
+const min=values.length?Math.min(...values):null,max=values.length?Math.max(...values):null;
+const sourceLinks=(p.sources||[]).map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">Official source ${i+1} ↗</a>`).join('');
+const cutoffRows=rows.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td><td>${esc(x[2])}</td><td>${num(x[6])}</td><td>${num(x[5])}</td><td>${num(x[4])}</td><td>${num(x[3])}</td></tr>`).join('');
+
+document.title=(c.shortName||c.name)+' - MahaCollege';
+document.getElementById('details').innerHTML=`
+<a class="back" href="college-predictor.html">← Back to College Predictor</a>
+<section class="hero-card"><h1>🎓 ${esc(c.name)}</h1><p class="hero-meta">📍 ${esc(c.city)}, ${esc(c.district)}, Maharashtra · Region: ${esc(c.region)}</p><p class="hero-meta">Institute Code: <strong>${esc(c.id)}</strong> · Status: <strong>${esc(c.status)}</strong> · University/Affiliation: <strong>${esc(c.university)}</strong></p><div class="badges">${branchSet.map(b=>`<span>${esc(b)}</span>`).join('')}</div><p style="margin-top:15px">${esc(p.overview||'This college is listed in the Maharashtra State CET Cell 2026-27 participating institute directory. The fields below are based on the project dataset and official admission sources.')}</p><div class="links"><a href="${esc(p.cetProfile||('https://fe2026.mahacet.org/StaticPages/frmInstituteSummary?InstituteCode='+c.id))}" target="_blank" rel="noopener">Official CET Cell Institute Profile ↗</a>${p.officialWebsite?`<a href="${esc(p.officialWebsite)}" target="_blank" rel="noopener">Official College Website ↗</a>`:''}</div></section>
+
+<section class="details-section"><h2>College at a glance</h2><div class="stat-grid"><div class="stat"><b>${esc(c.totalIntake||'—')}</b>2026-27 total intake</div><div class="stat"><b>${branchSet.length}</b>listed branches</div><div class="stat"><b>${rows.length}</b>cutoff rows loaded</div><div class="stat"><b class="verified">Verified</b>CET directory identity</div></div></section>
+
+<section class="details-section"><h2>Institute information</h2><div class="profile-grid"><div class="profile-item"><h3>🏛️ Institute type / status</h3><p>${esc(c.status)}</p></div><div class="profile-item"><h3>🎓 University / affiliation</h3><p>${esc(c.university)}</p></div><div class="profile-item"><h3>📍 Location</h3><p>${esc(c.city)}, ${esc(c.district)}, Maharashtra</p></div><div class="profile-item"><h3>💺 Approved total intake</h3><p>${esc(c.totalIntake||'Not available in loaded directory')}</p></div><div class="profile-item"><h3>📚 Courses / branches</h3><p>${branchSet.length} branches are included in this predictor dataset.</p></div><div class="profile-item"><h3>📝 Admission route</h3><p>B.E./B.Tech admissions use the Maharashtra State CET Cell CAP process; exact eligibility, seat matrix and current notices should be checked for the admission year.</p></div></div></section>
+
+<section class="details-section"><h2>📚 All branches</h2><ul class="branch-list">${branchSet.map(b=>`<li>${esc(b)}</li>`).join('')}</ul></section>
+
+<section class="details-section"><h2>📊 2026-27 CAP cutoff data</h2><div class="cutoff-summary"><div class="summary-box"><b>${min===null?'—':min.toFixed(2)}</b>Lowest loaded cutoff percentile</div><div class="summary-box"><b>${max===null?'—':max.toFixed(2)}</b>Highest loaded cutoff percentile</div><div class="summary-box"><b>${rows.length}</b>verified cutoff rows in dataset</div></div><p class="source">CAP 1–4 values below are shown exactly from the loaded project cutoff rows. A dash means no numeric value is present for that exact row/round.</p><div class="table-wrap"><table><thead><tr><th>Branch</th><th>Category</th><th>Seat pool</th><th>CAP 1</th><th>CAP 2</th><th>CAP 3</th><th>CAP 4</th></tr></thead><tbody>${cutoffRows||'<tr><td colspan="7">No numeric cutoff rows loaded for this college.</td></tr>'}</tbody></table></div><div class="links"><a href="https://cappublicdocs2026.blob.core.windows.net/documents/2026ENGG_CAP1_MH_CutOff_V1.pdf" target="_blank" rel="noopener">Official CAP 1 Cutoff ↗</a><a href="https://cappublicdocs2026.blob.core.windows.net/documents/2026ENGG_CAP2_MH_CutOff.pdf" target="_blank" rel="noopener">Official CAP 2 Cutoff ↗</a><a href="https://cappublicdocs2026.blob.core.windows.net/documents/2026ENGG_CAP3_MH_CutOff.pdf" target="_blank" rel="noopener">Official CAP 3 Cutoff ↗</a><a href="https://cappublicdocs2026.blob.core.windows.net/documents/2026ENGG_CAP4_MH_CutOff.pdf" target="_blank" rel="noopener">Official CAP 4 Cutoff ↗</a></div></section>
+
+<section class="details-section"><h2>🏫 Campus, facilities, faculty & placements</h2>${p.campus||p.facilities||p.faculty||p.placements?`<div class="profile-grid"><div class="profile-item"><h3>🏫 Campus</h3><p>${esc(p.campus||'Not published in the loaded profile.')}</p></div><div class="profile-item"><h3>🔬 Facilities</h3><p>${esc(p.facilities||'Not published in the loaded profile.')}</p></div><div class="profile-item"><h3>👨‍🏫 Faculty</h3><p>${esc(p.faculty||'Not published in the loaded profile.')}</p></div><div class="profile-item"><h3>💼 Placements</h3><p>${esc(p.placements||'Not published in the loaded profile.')}</p></div><div class="profile-item"><h3>🌿 Environment</h3><p>${esc(p.environment||'Not published in the loaded profile.')}</p></div><div class="profile-item"><h3>🏅 Accreditation</h3><p>${esc(p.accreditation||'Check the current official disclosure.')}</p></div></div>`:`<div class="notice">Detailed campus, faculty, facility and placement figures are not present in the Maharashtra CET Cell directory data used by this project, so no figures are invented here. Use the official institute profile/website for the current details.</div>`}</section>
+
+<section class="details-section"><h2>💰 Fees & admission documents</h2><div class="profile-grid"><div class="profile-item"><h3>Fees</h3><p>${esc(p.fees||'Current approved fees should be checked against the Maharashtra Fees Regulating Authority notice for the relevant academic year.')}</p></div><div class="profile-item"><h3>CAP / admission</h3><p>${esc(p.admission||'Check the Maharashtra CET Cell CAP portal for registration, merit lists, seat matrix, allotment and cutoffs.')}</p></div></div><div class="links"><a href="https://cetcell.mahacet.org/cap-_2025-26/" target="_blank" rel="noopener">Maharashtra CET Cell CAP Portal ↗</a><a href="https://ay26-27.mahafraportal.org/" target="_blank" rel="noopener">Fees Regulating Authority ↗</a></div></section>
+
+<section class="details-section"><h2>🔗 Official sources</h2><p class="source">${esc(typeof DATA_SOURCE!=='undefined'?DATA_SOURCE:'Maharashtra State CET Cell — Institute directory')}</p><div class="links">${sourceLinks||`<a href="${esc(p.cetProfile||('https://fe2026.mahacet.org/StaticPages/frmInstituteSummary?InstituteCode='+c.id))}" target="_blank" rel="noopener">Official CET Cell Institute Profile ↗</a>`}</div><div class="notice" style="margin-top:12px"><strong>Data note:</strong> CAP intake/status and cutoff information is admission-cycle data and can change for a new academic year. College-specific placement, fee, accreditation and facility claims are shown only where the project has a verified source; otherwise the official source is provided instead of fabricated figures.</div></section>`;
+</script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js"></script></body></html>'''
+d.write_text(html)
+
+# Update predictor button so clicking View College Details opens the complete detail page.
+pred=Path('/mnt/data/work_details/college-predictor.html')
+s=pred.read_text()
+s=s.replace("<button class=\"details-btn\" type=\"button\" onclick=\"toggleDetails('\\'+detailId+'\\',this)\">View College Details</button>", "<button class=\"details-btn\" type=\"button\" onclick=\"window.location.href='college-details.html?id='+encodeURIComponent(r.c.id)\">View College Details</button>")
+# The exact source uses string concatenation; if above pattern didn't match, patch the actual literal.
+s=s.replace("<button class=\"details-btn\" type=\"button\" onclick=\"toggleDetails(\\'\'+detailId+\\'\\',this)\">View College Details</button>", "<button class=\"details-btn\" type=\"button\" onclick=\"window.location.href='college-details.html?id='+encodeURIComponent(r.c.id)\">View College Details</button>")
+pred.write_text(s)
+print('patched')

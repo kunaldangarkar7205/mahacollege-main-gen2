@@ -1,0 +1,1801 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172554;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ================= NAVBAR ================= */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 6%;
+
+    background: white;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #172554;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.menu a {
+    color: #172554;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.menu a:hover {
+    color: #2563eb;
+}
+
+.login-btn {
+    background: #f5b800;
+    padding: 9px 18px;
+    border-radius: 7px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    background: linear-gradient(135deg, #eef6ff, #ffffff);
+    padding: 80px 7%;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+.hero-text {
+    max-width: 650px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #2563eb;
+    display: block;
+}
+
+.hero h3 {
+    font-size: 23px;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.hero-image {
+    width: 300px;
+    height: 230px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 130px;
+
+    background: #e0edff;
+
+    border-radius: 40% 60% 60% 40%;
+}
+
+
+/* ================= COMMON SECTION ================= */
+
+.section-title {
+    text-align: center;
+
+    max-width: 750px;
+
+    margin: auto auto 45px;
+}
+
+.section-title h2 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.section-title p {
+    color: #666;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+
+/* ================= IMPORTANT ================= */
+
+.important-section {
+    padding: 65px 6%;
+    background: white;
+}
+
+.important-container {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.important-card {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    color: #172554;
+
+    transition: 0.3s;
+}
+
+.important-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+.big-icon {
+    font-size: 45px;
+}
+
+.important-card h3 {
+    margin-bottom: 8px;
+}
+
+.important-card p {
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.important-card > span {
+    margin-left: auto;
+
+    font-size: 25px;
+}
+
+
+/* ================= FEATURES ================= */
+
+.features {
+    padding: 70px 6%;
+    background: #f8fafc;
+}
+
+.feature-container {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 22px;
+}
+
+.feature-card {
+    background: white;
+
+    padding: 30px 22px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    border: 1px solid #e5e7eb;
+
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+.feature-icon {
+    font-size: 45px;
+
+    margin-bottom: 18px;
+}
+
+.feature-card h3 {
+    font-size: 21px;
+
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+.feature-card a {
+    color: #2563eb;
+
+    font-weight: bold;
+}
+
+
+/* ================= EXPLORE ================= */
+
+.explore-section {
+    padding: 70px 6%;
+
+    background: white;
+}
+
+.city-container {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.city-card {
+    padding: 22px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: #172554;
+
+    font-weight: bold;
+
+    font-size: 17px;
+
+    transition: 0.3s;
+}
+
+.city-card:hover {
+    background: #eef6ff;
+
+    transform: translateY(-4px);
+}
+
+
+/* ================= JOURNEY ================= */
+
+.journey-section {
+    padding: 70px 5%;
+
+    background: #f5f9ff;
+}
+
+.journey-container {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.journey-step {
+    text-align: center;
+
+    max-width: 160px;
+}
+
+.journey-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: auto auto 12px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.journey-step h3 {
+    font-size: 16px;
+
+    margin-bottom: 8px;
+}
+
+.journey-step p {
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.journey-arrow {
+    font-size: 28px;
+
+    color: #2563eb;
+}
+
+
+/* ================= WHY ================= */
+
+.why-section {
+    padding: 70px 6%;
+
+    background: white;
+}
+
+.why-container {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 18px;
+}
+
+.why-card {
+    text-align: center;
+
+    padding: 25px 15px;
+
+    border-radius: 13px;
+
+    background: #f8fafc;
+}
+
+.why-card > div {
+    font-size: 35px;
+
+    margin-bottom: 12px;
+}
+
+.why-card h3 {
+    font-size: 17px;
+
+    margin-bottom: 10px;
+}
+
+.why-card p {
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #172554;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 45px 20px;
+}
+
+.footer-logo {
+    font-size: 27px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #dbeafe;
+
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+.footer-links a {
+    color: white;
+}
+
+.footer-links a:hover {
+    color: #f5b800;
+}
+
+.copyright {
+    font-size: 13px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .menu {
+        gap: 10px;
+    }
+
+    .feature-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .important-container {
+        grid-template-columns: 1fr;
+    }
+
+    .why-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .journey-container {
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .feature-container {
+        grid-template-columns: 1fr;
+    }
+
+    .city-container {
+        grid-template-columns: 1fr;
+    }
+
+    .why-container {
+        grid-template-columns: 1fr;
+    }
+
+    .journey-arrow {
+        display: none;
+    }
+
+}
+/* ================= DARK MODE ================= */
+body.dark-mode{background:#0f172a;color:#e5e7eb}body.dark-mode nav{background:#111827;box-shadow:0 2px 12px rgba(0,0,0,.35)}body.dark-mode .logo,body.dark-mode .menu a{color:#e5e7eb}body.dark-mode .menu a:hover{color:#60a5fa}body.dark-mode .important-section,body.dark-mode .features{background:#111827}body.dark-mode .feature-card,body.dark-mode .important-card,body.dark-mode .account-card,body.dark-mode .search-box,body.dark-mode .college-card,body.dark-mode .predictor-page,body.dark-mode table{background:#1e293b;color:#e5e7eb;border-color:#334155}body.dark-mode .hero{background:linear-gradient(135deg,#172554,#0f172a)}body.dark-mode .hero p,body.dark-mode .section-title p,body.dark-mode .important-card p{color:#cbd5e1}body.dark-mode input,body.dark-mode select{background:#0f172a;color:#e5e7eb;border-color:#475569}
+
+
+/* =========================================================
+   MAHACOLLEGE GLOBAL THEME SYSTEM
+   Light/Dark mode applies to the complete website.
+   ========================================================= */
+
+:root {
+    --mc-bg: #f5f7fb;
+    --mc-surface: #ffffff;
+    --mc-surface-2: #f8fafc;
+    --mc-surface-3: #eef6ff;
+    --mc-text: #172554;
+    --mc-text-2: #475569;
+    --mc-muted: #666;
+    --mc-border: #e5e7eb;
+    --mc-primary: #2563eb;
+    --mc-primary-soft: #eef6ff;
+    --mc-input: #ffffff;
+    --mc-shadow: rgba(0,0,0,.08);
+}
+
+body {
+    background: var(--mc-bg);
+    color: var(--mc-text);
+    transition: background-color .25s ease, color .25s ease;
+}
+
+nav,
+.important-section,
+.features,
+.explore-section,
+.why-section,
+.feature-card,
+.important-card,
+.city-card,
+.journey-icon,
+.account-card,
+.search-box,
+.college-card,
+.predictor-page,
+.result-card,
+.auth-box,
+.category-box,
+.detail-panel,
+.details-section,
+.documents-box,
+.document-item,
+.notification-card,
+.comparison,
+.table-container,
+.table-wrap,
+.cutoff-table,
+.profile-item,
+.hero-card,
+.source-box,
+.notice,
+.intro,
+.filters,
+.tools,
+.location-help {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+/* ---------- DARK THEME: GLOBAL ---------- */
+body.dark-mode {
+    --mc-bg: #0b1120;
+    --mc-surface: #111827;
+    --mc-surface-2: #1e293b;
+    --mc-surface-3: #172554;
+    --mc-text: #f8fafc;
+    --mc-text-2: #cbd5e1;
+    --mc-muted: #94a3b8;
+    --mc-border: #334155;
+    --mc-primary: #60a5fa;
+    --mc-primary-soft: #172554;
+    --mc-input: #0f172a;
+    --mc-shadow: rgba(0,0,0,.35);
+
+    background: var(--mc-bg) !important;
+    color: var(--mc-text) !important;
+}
+
+/* Every major section */
+body.dark-mode nav,
+body.dark-mode .important-section,
+body.dark-mode .explore-section,
+body.dark-mode .why-section,
+body.dark-mode .features,
+body.dark-mode .journey-section,
+body.dark-mode .auth-page,
+body.dark-mode .account-page,
+body.dark-mode .compare-page,
+body.dark-mode .cutoff-page,
+body.dark-mode .details-page,
+body.dark-mode .documents-page,
+body.dark-mode .notification-page,
+body.dark-mode .predictor-page {
+    background: var(--mc-bg) !important;
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .hero {
+    background: linear-gradient(135deg, #172554, #0b1120) !important;
+}
+
+body.dark-mode .logo,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode label,
+body.dark-mode strong,
+body.dark-mode .menu a,
+body.dark-mode .important-card,
+body.dark-mode .city-card,
+body.dark-mode .journey-step,
+body.dark-mode .section-title,
+body.dark-mode .hero-text,
+body.dark-mode .feature-card {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode .hero p,
+body.dark-mode .section-title p,
+body.dark-mode .important-card p,
+body.dark-mode .feature-card p,
+body.dark-mode .why-card p,
+body.dark-mode .journey-step p,
+body.dark-mode .muted,
+body.dark-mode .small,
+body.dark-mode .note,
+body.dark-mode .source-note,
+body.dark-mode .location-help {
+    color: var(--mc-text-2) !important;
+}
+
+/* Cards / boxes / panels */
+body.dark-mode .feature-card,
+body.dark-mode .important-card,
+body.dark-mode .city-card,
+body.dark-mode .why-card,
+body.dark-mode .account-card,
+body.dark-mode .search-box,
+body.dark-mode .college-card,
+body.dark-mode .hero-card,
+body.dark-mode .result-card,
+body.dark-mode .auth-box,
+body.dark-mode .category-box,
+body.dark-mode .detail-panel,
+body.dark-mode .details-section,
+body.dark-mode .documents-box,
+body.dark-mode .document-item,
+body.dark-mode .notification-card,
+body.dark-mode .comparison,
+body.dark-mode .table-container,
+body.dark-mode .table-wrap,
+body.dark-mode .profile-item,
+body.dark-mode .source-box,
+body.dark-mode .notice,
+body.dark-mode .intro,
+body.dark-mode .filters,
+body.dark-mode .tools,
+body.dark-mode .location-help {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+    box-shadow: 0 8px 25px var(--mc-shadow);
+}
+
+body.dark-mode .city-card,
+body.dark-mode .why-card {
+    background: var(--mc-surface-2) !important;
+}
+
+body.dark-mode .journey-icon,
+body.dark-mode .hero-image {
+    background: var(--mc-surface-2) !important;
+    color: var(--mc-text) !important;
+}
+
+/* Inputs, selects and textareas */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background: var(--mc-input) !important;
+    color: var(--mc-text) !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode option {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+/* Tables */
+body.dark-mode table,
+body.dark-mode th,
+body.dark-mode td {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode th {
+    background: #172554 !important;
+}
+
+body.dark-mode tr:nth-child(even) td {
+    background: #162033 !important;
+}
+
+/* Links/buttons */
+body.dark-mode a:not(.login-btn) {
+    color: var(--mc-primary);
+}
+
+body.dark-mode .menu a:hover,
+body.dark-mode .feature-card a:hover,
+body.dark-mode .footer-links a:hover {
+    color: #93c5fd !important;
+}
+
+body.dark-mode button,
+body.dark-mode .search-btn,
+body.dark-mode .predict-btn,
+body.dark-mode .add-btn,
+body.dark-mode .card-btn,
+body.dark-mode .auth-button {
+    color: #fff;
+}
+
+body.dark-mode .login-btn {
+    color: #172554 !important;
+}
+
+body.dark-mode .badge,
+body.dark-mode .tag,
+body.dark-mode .match-badge {
+    border-color: var(--mc-border);
+}
+
+/* Footer remains intentionally dark in both themes */
+body.dark-mode footer {
+    background: #020617 !important;
+    color: #f8fafc !important;
+}
+
+/* Theme toggle */
+#theme-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0 !important;
+    border-radius: 50%;
+    font-size: 19px !important;
+    cursor: pointer;
+    background: var(--mc-surface-2);
+    color: var(--mc-text) !important;
+    border: 1px solid var(--mc-border);
+    transition: .2s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.06);
+    background: var(--mc-primary-soft);
+}
+
+/* ---------- INLINE-STYLE OVERRIDES ---------- */
+body.dark-mode [style*="background:#fff"],
+body.dark-mode [style*="background: #fff"],
+body.dark-mode [style*="background:white"],
+body.dark-mode [style*="background: white"],
+body.dark-mode [style*="background:#ffffff"],
+body.dark-mode [style*="background: #ffffff"] {
+    background: var(--mc-surface) !important;
+}
+
+body.dark-mode [style*="color:#172554"],
+body.dark-mode [style*="color: #172554"],
+body.dark-mode [style*="color:#333"],
+body.dark-mode [style*="color: #333"],
+body.dark-mode [style*="color:#555"],
+body.dark-mode [style*="color: #555"] {
+    color: var(--mc-text-2) !important;
+}
+
+/* =========================================================
+   FINAL THEME CONTRAST FIX
+   Makes page-specific/inline styles readable in both themes.
+   ========================================================= */
+
+/* Dark mode: page-specific sections */
+body.dark-mode .page-header,
+body.dark-mode .source-box,
+body.dark-mode .round-note,
+body.dark-mode .notice,
+body.dark-mode .stat,
+body.dark-mode .label,
+body.dark-mode .empty {
+    background: var(--mc-surface-2) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode .page-header h1,
+body.dark-mode .page-header p,
+body.dark-mode .source-note,
+body.dark-mode .source,
+body.dark-mode .count,
+body.dark-mode .round-title,
+body.dark-mode .cutoff-head p,
+body.dark-mode .meta,
+body.dark-mode .direct-details strong,
+body.dark-mode .direct-details span,
+body.dark-mode .profile-item p,
+body.dark-mode .item p,
+body.dark-mode .small,
+body.dark-mode .muted {
+    color: var(--mc-text-2) !important;
+}
+
+/* College branch/category pills: the important fix visible in the screenshot */
+body.dark-mode .badge,
+body.dark-mode .tag,
+body.dark-mode .match-badge,
+body.dark-mode .badges span {
+    background: #334155 !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
+    text-shadow: none !important;
+}
+
+/* Search/filter area */
+body.dark-mode .filters input,
+body.dark-mode .filters select,
+body.dark-mode .tools input,
+body.dark-mode .college-select select,
+body.dark-mode .category-box select,
+body.dark-mode .profile-form input {
+    background: var(--mc-input) !important;
+    color: var(--mc-text) !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .filters input::placeholder,
+body.dark-mode .tools input::placeholder,
+body.dark-mode .profile-form input::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* College details/predictor content */
+body.dark-mode .details-page,
+body.dark-mode .predictor-page,
+body.dark-mode .compare-page,
+body.dark-mode .cutoff-page,
+body.dark-mode .documents-page,
+body.dark-mode .notification-page,
+body.dark-mode .auth-page,
+body.dark-mode .account-page {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .result-card {
+    background: #1e293b !important;
+    color: var(--mc-text) !important;
+    border-left-color: #60a5fa !important;
+}
+
+body.dark-mode .result-card h3,
+body.dark-mode .predictor-page h1,
+body.dark-mode .form-group label,
+body.dark-mode .count,
+body.dark-mode .meta {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .round-note,
+body.dark-mode .selected-round {
+    background: #172554 !important;
+    color: #dbeafe !important;
+}
+
+body.dark-mode .cutoff-table,
+body.dark-mode .cutoff-table th,
+body.dark-mode .cutoff-table td {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode .cutoff-table th {
+    background: #172554 !important;
+}
+
+body.dark-mode .comparison .label {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+}
+
+/* Dashboard/history/favourites */
+body.dark-mode .item,
+body.dark-mode .item-actions button,
+body.dark-mode .item-actions a {
+    background: var(--mc-surface-2) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode .danger {
+    background: #7f1d1d !important;
+    color: #fecaca !important;
+    border-color: #991b1b !important;
+}
+
+/* Notifications/documents */
+body.dark-mode .notification-item,
+body.dark-mode .document-card,
+body.dark-mode .document-item,
+body.dark-mode .notification-card {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+/* Links inside light-colored inline boxes */
+body.dark-mode .source-box a,
+body.dark-mode .round-note a,
+body.dark-mode .links a {
+    color: #93c5fd !important;
+}
+
+/* Override common inline light backgrounds/colors used by individual pages. */
+body.dark-mode [style*="background:#eef2ff"],
+body.dark-mode [style*="background: #eef2ff"],
+body.dark-mode [style*="background:#eef6ff"],
+body.dark-mode [style*="background: #eef6ff"],
+body.dark-mode [style*="background:#f8fafc"],
+body.dark-mode [style*="background: #f8fafc"],
+body.dark-mode [style*="background:#fafafa"],
+body.dark-mode [style*="background: #fafafa"] {
+    background: var(--mc-surface-2) !important;
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode [style*="color:#666"],
+body.dark-mode [style*="color: #666"],
+body.dark-mode [style*="color:#64748b"],
+body.dark-mode [style*="color: #64748b"],
+body.dark-mode [style*="color:#475569"],
+body.dark-mode [style*="color: #475569"] {
+    color: var(--mc-text-2) !important;
+}
+
+/* Keep all form controls readable in dark mode, including controls defined inline. */
+body.dark-mode button,
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    -webkit-text-fill-color: currentColor;
+}
+
+/* Light theme contrast for pills and normal text */
+body:not(.dark-mode) .badge,
+body:not(.dark-mode) .tag,
+body:not(.dark-mode) .match-badge,
+body:not(.dark-mode) .badges span {
+    color: #172554;
+}
+
+/* =========================================================
+   DOCUMENTS PAGE THEME FIX
+   Fixes the white category-selection panel visible in dark mode.
+   ========================================================= */
+.category-select {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.category-select select {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+body.dark-mode .category-select {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border: 1px solid var(--mc-border) !important;
+    box-shadow: 0 8px 25px var(--mc-shadow) !important;
+}
+
+body.dark-mode .category-select label,
+body.dark-mode .category-select strong {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .category-select select {
+    background: var(--mc-input) !important;
+    color: var(--mc-text) !important;
+    border: 1px solid #475569 !important;
+}
+
+body.dark-mode .category-select select option {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .documents-box h3 {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .document-item {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+}
+
+/* Light theme keeps the document page clean and readable. */
+body:not(.dark-mode) .category-select {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+body:not(.dark-mode) .category-select select {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border-color: #cbd5e1 !important;
+}
+
+body:not(.dark-mode) .document-item {
+    background: #f5f7fb !important;
+    color: #172554 !important;
+}
+
+/* =========================================================
+   COMPARE PAGE - COMPLETE DARK/LIGHT THEME FIX
+   ========================================================= */
+body.dark-mode .compare-page .college-select,
+body.dark-mode .compare-page .category-box {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border: 1px solid var(--mc-border) !important;
+    box-shadow: 0 8px 24px var(--mc-shadow) !important;
+}
+
+body.dark-mode .compare-page .college-select select,
+body.dark-mode .compare-page .category-box select {
+    background: var(--mc-input) !important;
+    color: var(--mc-text) !important;
+    border: 1px solid #475569 !important;
+}
+
+body.dark-mode .compare-page .college-select select option,
+body.dark-mode .compare-page .category-box select option {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .compare-page .add-btn {
+    background: #2563eb !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .compare-page .clear-btn {
+    background: #334155 !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
+}
+
+body.dark-mode .compare-page .small {
+    color: var(--mc-text-2) !important;
+}
+
+body.dark-mode .compare-page .comparison {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .compare-page .comparison table,
+body.dark-mode .compare-page .comparison tbody,
+body.dark-mode .compare-page .comparison tr,
+body.dark-mode .compare-page .comparison td {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode .compare-page .comparison th {
+    background: #172554 !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .compare-page .comparison .label {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    font-weight: 700 !important;
+}
+
+body.dark-mode .compare-page .comparison a {
+    color: #93c5fd !important;
+}
+
+/* Light mode remains explicit so this page cannot inherit a dark value. */
+body:not(.dark-mode) .compare-page .college-select,
+body:not(.dark-mode) .compare-page .category-box {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+body:not(.dark-mode) .compare-page .college-select select,
+body:not(.dark-mode) .compare-page .category-box select {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border-color: #cbd5e1 !important;
+}
+
+body:not(.dark-mode) .compare-page .comparison table {
+    background: #ffffff !important;
+    color: #172554 !important;
+}
+
+body:not(.dark-mode) .compare-page .comparison td {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border-color: #ddd !important;
+}
+
+body:not(.dark-mode) .compare-page .comparison .label {
+    background: #f7f7f7 !important;
+    color: #172554 !important;
+}
+
+/* =========================================================
+   MAHACOLLEGE RESPONSIVE LAYOUT - DESKTOP / TABLET / MOBILE
+   Added without removing the existing responsive/theme rules.
+   ========================================================= */
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+button, input, select, textarea {
+    max-width: 100%;
+    font: inherit;
+}
+
+/* Large desktop */
+@media (min-width: 1201px) {
+    .hero-content,
+    .important-container,
+    .feature-container,
+    .city-container,
+    .why-container,
+    .college-container,
+    .search-box,
+    .source-note,
+    .account-page,
+    .details-page,
+    .notification-page,
+    .documents-page,
+    .predictor-page {
+        max-width: 1200px;
+    }
+
+    .menu {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Tablet / small laptop */
+@media (max-width: 1100px) {
+    nav {
+        padding: 15px 3%;
+        gap: 12px;
+    }
+
+    .menu {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 60px 5%;
+    }
+
+    .hero-content {
+        gap: 30px;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .important-container,
+    .feature-container {
+        gap: 18px;
+    }
+
+    .college-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .compare-page {
+        padding: 42px 3%;
+    }
+
+    .college-select,
+    .category-box {
+        width: 100%;
+    }
+
+    .comparison {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .account-page,
+    .details-page,
+    .notification-page,
+    .documents-page {
+        width: 94%;
+    }
+}
+
+/* Tablet portrait */
+@media (max-width: 900px) {
+    nav {
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 22px;
+        white-space: nowrap;
+    }
+
+    .menu {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .menu a {
+        padding: 5px 2px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 800px;
+    }
+
+    .hero-image {
+        width: min(300px, 80vw);
+        height: 210px;
+    }
+
+    .important-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .why-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .journey-container {
+        justify-content: center;
+    }
+
+    .profile-grid,
+    .stat-grid,
+    .account-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .predictor-page {
+        width: 94%;
+        margin: 30px auto;
+    }
+
+    .direct-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    nav {
+        position: relative;
+        padding: 12px 14px;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 21px;
+        text-align: center;
+    }
+
+    .menu {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 7px 12px;
+    }
+
+    .menu a {
+        font-size: 13px;
+        line-height: 1.2;
+        padding: 5px 2px;
+    }
+
+    #theme-toggle {
+        width: 34px;
+        height: 34px;
+        font-size: 17px !important;
+    }
+
+    .login-btn {
+        padding: 8px 12px !important;
+    }
+
+    .hero {
+        padding: 45px 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(30px, 9vw, 38px);
+    }
+
+    .hero h3 {
+        font-size: 19px;
+    }
+
+    .hero p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .hero-image {
+        width: min(250px, 75vw);
+        height: 175px;
+        font-size: 90px;
+        border-radius: 30% 50% 50% 30%;
+    }
+
+    .section-title {
+        margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+        font-size: 27px;
+    }
+
+    .section-title p {
+        font-size: 15px;
+    }
+
+    .important-section,
+    .features,
+    .explore-section,
+    .why-section,
+    .journey-section {
+        padding: 45px 16px;
+    }
+
+    .important-container,
+    .feature-container,
+    .why-container,
+    .city-container,
+    .college-container,
+    .account-grid,
+    .profile-grid,
+    .stat-grid,
+    .predictor-grid,
+    .info-grid,
+    .round-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .important-card,
+    .feature-card,
+    .city-card,
+    .why-card,
+    .college-card,
+    .account-card,
+    .result-card,
+    .notification-card,
+    .document-item,
+    .documents-box,
+    .detail-panel,
+    .details-section {
+        width: 100%;
+    }
+
+    .important-card {
+        padding: 19px;
+    }
+
+    .big-icon,
+    .feature-icon {
+        font-size: 38px;
+    }
+
+    .search-box,
+    .filters,
+    .tools,
+    .category-select,
+    .college-select,
+    .category-box {
+        width: 100% !important;
+    }
+
+    .search-box,
+    .college-select,
+    .category-box {
+        padding: 17px !important;
+        margin: 22px auto !important;
+    }
+
+    .filters {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+    }
+
+    .filters input,
+    .filters select,
+    .tools input,
+    .tools select,
+    .category-select select,
+    .college-select select,
+    .category-box select {
+        width: 100%;
+        min-width: 0 !important;
+    }
+
+    .college-container {
+        padding: 14px !important;
+    }
+
+    .college-card {
+        padding: 18px !important;
+    }
+
+    .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
+    }
+
+    .badge,
+    .tag,
+    .match-badge {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .account-page,
+    .details-page,
+    .notification-page,
+    .documents-page,
+    .cutoff-page {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .account-head {
+        padding: 22px;
+        border-radius: 14px;
+    }
+
+    .account-head h1 {
+        font-size: 25px;
+    }
+
+    .account-actions,
+    .account-actions button {
+        width: 100%;
+    }
+
+    .account-actions button {
+        padding: 11px 14px;
+    }
+
+    .profile-form input,
+    .auth-box input,
+    .auth-box select,
+    .auth-box button {
+        width: 100%;
+    }
+
+    .auth-page {
+        padding: 25px 14px !important;
+    }
+
+    .auth-box {
+        width: 100% !important;
+        padding: 24px !important;
+    }
+
+    .compare-page {
+        padding: 32px 12px !important;
+    }
+
+    .compare-page .college-select,
+    .compare-page .category-box {
+        margin: 14px 0 !important;
+        padding: 16px !important;
+    }
+
+    .add-btn,
+    .clear-btn {
+        width: 100%;
+        margin: 4px 0 0 !important;
+    }
+
+    .comparison {
+        margin: 20px 0;
+        width: 100%;
+        overflow-x: auto;
+        border-radius: 10px;
+    }
+
+    .comparison table {
+        min-width: 900px;
+    }
+
+    .comparison th,
+    .comparison td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .details-page {
+        margin: 25px auto !important;
+    }
+
+    .hero-card,
+    .details-section {
+        padding: 19px !important;
+        border-radius: 13px;
+    }
+
+    .profile-grid,
+    .stat-grid {
+        gap: 10px;
+    }
+
+    .predictor-page {
+        width: 100% !important;
+        margin: 20px auto !important;
+        padding: 17px !important;
+    }
+
+    .result-card {
+        padding: 17px !important;
+    }
+
+    .result-head {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .match-badge {
+        display: inline-block;
+        width: fit-content;
+        white-space: normal;
+    }
+
+    .direct-details {
+        grid-template-columns: 1fr !important;
+    }
+
+    .direct-details .wide {
+        grid-column: auto;
+    }
+
+    .table-container,
+    .table-wrap,
+    .cutoff-table,
+    .comparison {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-container table,
+    .table-wrap table,
+    .cutoff-table {
+        min-width: 700px;
+    }
+
+    .page-header {
+        padding: 35px 15px !important;
+    }
+
+    .page-header h1,
+    .page-header h2 {
+        font-size: 28px;
+    }
+
+    footer {
+        padding: 35px 15px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 12px 18px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+    .menu {
+        gap: 6px 9px;
+    }
+
+    .menu a {
+        font-size: 12px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .hero h3 {
+        font-size: 17px;
+    }
+
+    .section-title h2 {
+        font-size: 24px;
+    }
+
+    .account-head h1 {
+        font-size: 22px;
+    }
+
+    .account-card,
+    .college-card,
+    .feature-card,
+    .important-card {
+        padding: 16px !important;
+    }
+
+    .comparison table {
+        min-width: 820px;
+    }
+
+    .table-container table,
+    .table-wrap table,
+    .cutoff-table {
+        min-width: 650px;
+    }
+}
+
+/* Landscape phones: use the available width efficiently without breaking cards. */
+@media (max-width: 900px) and (orientation: landscape) {
+    nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .menu {
+        width: auto;
+        justify-content: flex-end;
+    }
+
+    .hero-content {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .hero-text {
+        max-width: 65%;
+    }
+
+    .hero-image {
+        width: 230px;
+        height: 170px;
+    }
+}
