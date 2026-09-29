@@ -10,15 +10,14 @@
 <nav><div class="logo">🎓 MahaCollege</div><div class="menu"><a href="index.html">Home</a><a href="find-colleges.html">Colleges</a><a href="category-cutoffs.html">Cutoffs</a><a href="college-predictor.html">Predictor</a><a href="compare-colleges.html">Compare</a><a href="notifications.html">Notifications</a><a href="login.html" class="login-btn">Login</a></div></nav>
 <main class="details-page" id="details"></main>
 <script src="college-data.js"></script><script>
-const q=new URLSearchParams(location.search), id=q.get('id'), list=Array.isArray(window.COLLEGES)?window.COLLEGES:[], c=list.find(x=>x.id===id)||list[0], p=c?.profile||{};
+const q=new URLSearchParams(location.search), id=q.get('id'), c=COLLEGES.find(x=>x.id===id)||COLLEGES[0], p=c.profile||{};
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const num=v=>typeof v==='number'?v.toFixed(2):'—';
 const rows=(c.cutoffs||[]).filter(x=>[3,4,5,6].some(i=>typeof x[i]==='number'));
 const branchSet=[...new Set((c.branches||[]).map(String))];
 const values=rows.flatMap(x=>[3,4,5,6].map(i=>x[i]).filter(v=>typeof v==='number'));
 const min=values.length?Math.min(...values):null,max=values.length?Math.max(...values):null;
-const sourceList=Array.isArray(p.sources)?p.sources:[];
-const sourceLinks=sourceList.map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">Official source ${i+1} ↗</a>`).join('');
+const sourceLinks=(p.sources||[]).map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">Official source ${i+1} ↗</a>`).join('');
 const cutoffRows=rows.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td><td>${esc(x[2])}</td><td>${num(x[6])}</td><td>${num(x[5])}</td><td>${num(x[4])}</td><td>${num(x[3])}</td></tr>`).join('');
 
 document.title=(c.shortName||c.name)+' - MahaCollege';
