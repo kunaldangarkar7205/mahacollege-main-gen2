@@ -18,12 +18,12 @@
 <nav><div class="logo">🎓 MahaCollege</div><div class="menu"><a href="index.html">Home</a><a href="find-colleges.html">Colleges</a><a href="category-cutoffs.html">Cutoffs</a><a href="college-predictor.html">Predictor</a><a href="compare-colleges.html">Compare</a><a href="notifications.html">Notifications</a><a href="login.html" class="login-btn">Login</a></div></nav>
 <div class="predictor-page">
 <h1>🎯 College Predictor</h1>
-<p class="intro">Enter your MHT-CET percentile, category and preferences. The predictor checks the selected CAP round against the cutoff data loaded in the program.</p>
+<p class="intro">Enter your MHT-CET percentile, category, preferred branch and region. The predictor filters the loaded CAP cutoff data by all your selections.</p>
 <div class="predictor-grid">
 <div class="form-group"><label for="percentile">MHT-CET Percentile</label><input type="number" id="percentile" min="0" max="100" step="0.01" placeholder="Example: 85.50"></div>
 <div class="form-group"><label for="category">Category</label><select id="category"><option value="">Select Category</option><option>OPEN</option><option>OBC</option><option>SC</option><option>ST</option><option>EWS</option><option>SEBC</option><option>VJ/DT</option><option>NT-A</option><option>NT-B</option><option>NT-C</option><option>NT-D</option><option>SBC</option></select></div>
 <div class="form-group"><label for="branch">Preferred Branch</label><select id="branch"><option value="">Any Branch</option></select></div>
-<div class="form-group"><label for="region">College Location</label><select id="region"><option value="">Any Location</option></select><small class="location-help">Choose a city/district to see colleges from that location.</small></div>
+<div class="form-group"><label for="region">College Location</label><select id="region"><option value="">Any Location</option></select><small class="location-help">Choose a city, district or region to filter colleges. Navi Mumbai is included.</small></div>
 <div class="form-group"><label for="round">Cutoff Round to Check</label><select id="round"><option value="cap1">CAP Round 1</option><option value="cap2">CAP Round 2</option><option value="cap3">CAP Round 3</option><option value="cap4" selected>CAP Round 4</option></select></div>
 <div class="form-group full"><button class="predict-btn" onclick="predictCollege()">Find Matching Colleges</button></div>
 </div>
@@ -34,12 +34,31 @@
 <script>
 const ROUND_INFO={cap1:{label:'CAP Round 1',index:6},cap2:{label:'CAP Round 2',index:5},cap3:{label:'CAP Round 3',index:4},cap4:{label:'CAP Round 4',index:3}};
 const collegeList=Array.isArray(window.COLLEGES)?window.COLLEGES:(typeof COLLEGES!=='undefined'?COLLEGES:[]);
-const branches=[...new Set(collegeList.flatMap(c=>[...(Array.isArray(c.branches)?c.branches:[]),...(Array.isArray(c.cutoffs)?c.cutoffs.map(x=>x&&x[0]).filter(Boolean):[])]))].sort((a,b)=>a.localeCompare(b));
-const locations=[...new Set(collegeList.flatMap(c=>[c.city,c.district]).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
-document.getElementById('branch').innerHTML='<option value="">Any Branch</option>'+branches.map(b=>'<option value="'+escapeHtml(b)+'">'+escapeHtml(b)+'</option>').join('');
-if(!branches.length){document.getElementById('branch').innerHTML='<option value="">Any Branch</option>'; }
-document.getElementById('region').innerHTML='<option value="">Any Location</option>'+locations.map(x=>'<option value="'+escapeHtml(x)+'">'+escapeHtml(x)+'</option>').join('');
 function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function cleanText(value){return String(value??'').trim();}
+function uniqueSorted(values){return [...new Set(values.map(cleanText).filter(Boolean))].sort((a,b)=>a.localeCompare(b));}
+function normalizeBranch(value){return cleanText(value).toLowerCase().replace(/\s+/g,' ').replace(/&amp;/g,'&');}
+function normalizeLocation(value){return cleanText(value).toLowerCase().replace(/\s+/g,' ');}
+
+// Build dropdowns from the complete cutoff dataset, with a few common Maharashtra
+// region labels included so the predictor remains usable even if a college record
+// has an incomplete location field.
+const branchSet=[];
+collegeList.forEach(c=>{
+  if(Array.isArray(c.branches)) branchSet.push(...c.branches);
+  if(Array.isArray(c.cutoffs)) c.cutoffs.forEach(x=>{if(Array.isArray(x)&&x[0]) branchSet.push(x[0]);});
+});
+const branches=uniqueSorted(branchSet);
+const regionSet=[];
+collegeList.forEach(c=>{regionSet.push(c.city,c.district,c.region);});
+const commonRegions=['Mumbai','Navi Mumbai','Thane','Raigad','Pune','Palghar','Nashik','Nagpur','Aurangabad','Chhatrapati Sambhajinagar','Kolhapur','Satara','Sangli','Solapur','Ratnagiri','Sindhudurg','Ahmednagar','Jalgaon','Dhule','Nanded','Latur','Akola','Amravati','Buldhana','Beed','Osmanabad','Yavatmal','Wardha','Washim','Gondia','Bhandara','Chandrapur','Gadchiroli'];
+regionSet.push(...commonRegions);
+const locations=uniqueSorted(regionSet);
+
+const branchSelect=document.getElementById('branch');
+const regionSelect=document.getElementById('region');
+branchSelect.innerHTML='<option value="">Any Branch</option>'+branches.map(b=>'<option value="'+escapeHtml(b)+'">'+escapeHtml(b)+'</option>').join('');
+regionSelect.innerHTML='<option value="">Any Location</option>'+locations.map(x=>'<option value="'+escapeHtml(x)+'">'+escapeHtml(x)+'</option>').join('');
 function normalizeCategory(value){
  const v=String(value||'').trim().toUpperCase().replace(/\s+/g,' ');
  return v.replace(/^G(?=(OPEN|SC|ST|OBC|SEBC|VJ\/DT|NT-A|NT-B|NT-C|NT-D|SBC|EWS))|^L(?=(OPEN|SC|ST|OBC|SEBC|VJ\/DT|NT-A|NT-B|NT-C|NT-D|SBC|EWS))/,'');
@@ -64,7 +83,7 @@ async function predictCollege(){
  const results=[];
  collegeList.forEach(c=>{
    (Array.isArray(c.cutoffs)?c.cutoffs:[]).forEach(x=>{
-     if(!Array.isArray(x)||x.length<4||!categoryMatches(x[1],cat)|| (branch&&x[0]!==branch)||(region&&c.city!==region&&c.district!==region&&c.region!==region)) return;
+     if(!Array.isArray(x)||x.length<4||!categoryMatches(x[1],cat)|| (branch&&normalizeBranch(x[0])!==normalizeBranch(branch))||(region&&normalizeLocation(c.city)!==normalizeLocation(region)&&normalizeLocation(c.district)!==normalizeLocation(region)&&normalizeLocation(c.region)!==normalizeLocation(region))) return;
      const selectedCutoff=cutoffFor(x,roundKey);
      // A blank cell in an official round means there is no cutoff for that
      // category/seat-pool in that round. Never fall back to another round.
@@ -92,7 +111,7 @@ async function predictCollege(){
  }
  document.getElementById('results').innerHTML=html;
  try {
-   await MahaAccount.addPrediction({percentile:pct.toFixed(2),category:cat,branch:branch||'Any Branch',region:region||'Any Location',round:info.label,count:arr.length});
+   if(window.MahaAccount && typeof MahaAccount.addPrediction==='function'){ await MahaAccount.addPrediction({percentile:pct.toFixed(2),category:cat,branch:branch||'Any Branch',region:region||'Any Location',round:info.label,count:arr.length}); }
  } catch(e) { console.error('Prediction history could not be saved:',e); } 
 }
 </script>

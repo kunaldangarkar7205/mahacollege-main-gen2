@@ -1799,3 +1799,6 @@ button, input, select, textarea {
         height: 170px;
     }
 }
+
+/* MahaCollege themed logout button */
+.logout-btn{border:1px solid #cbd5e1;background:#172554;color:#fff;padding:9px 16px;border-radius:8px;font-weight:700;cursor:pointer;transition:.2s}.logout-btn:hover{background:#2563eb}.dark-mode .logout-btn{background:#1e293b;color:#f8fafc;border-color:#475569}.dark-mode .logout-btn:hover{background:#334155}
