@@ -17,7 +17,7 @@
 <section class="page-header"><h1>Find Engineering Colleges</h1><p>Browse Maharashtra engineering colleges and verified 2026 CAP cutoff data.</p></section>
 <div class="search-box"><div class="filters">
 <input id="search" placeholder="Search college name...">
-<select id="region"><option value="all">All Regions</option><option>Mumbai</option><option>Pune</option><option>Nagpur</option><option>Nashik</option><option>Other Maharashtra</option></select>
+<select id="region"><option value="all">All Regions</option><option>Mumbai</option><option>Navi Mumbai</option><option>Pune</option><option>Nagpur</option><option>Nashik</option><option>Other Maharashtra</option></select>
 <select id="branch"><option value="all">All Branches</option></select>
 <select id="category"><option value="all">All Categories</option><option>OPEN</option><option>OBC</option><option>SC</option><option>ST</option><option>EWS</option><option>SEBC</option><option>VJ/DT</option><option>NT-A</option><option>NT-B</option><option>NT-C</option></select>
 </div><button class="search-btn" onclick="renderColleges()">Search Colleges</button></div>
@@ -34,7 +34,7 @@ async function toggleFavorite(id){try{const saved=await MahaAccount.toggleFavori
 function renderColleges(){
  const q=document.getElementById('search').value.toLowerCase(), r=document.getElementById('region').value, b=document.getElementById('branch').value, cat=document.getElementById('category').value;
  const list=COLLEGES.filter(c=>c.name.toLowerCase().includes(q)||c.shortName.toLowerCase().includes(q))
- .filter(c=>r==='all'||c.region===r).filter(c=>b==='all'||c.branches.includes(b))
+ .filter(c=>{if(r==='all') return true; if(r==='Navi Mumbai') return String(c.city||'').toLowerCase().includes('navi mumbai') || String(c.district||'').toLowerCase().includes('navi mumbai') || String(c.region||'').toLowerCase()==='navi mumbai'; return c.region===r || String(c.city||'').toLowerCase()===r.toLowerCase() || String(c.district||'').toLowerCase()===r.toLowerCase();}).filter(c=>b==='all'||c.branches.includes(b))
  .filter(c=>cat==='all'||c.cutoffs.some(x=>x[1].startsWith(cat)));
  document.getElementById('collegeContainer').innerHTML=list.map(c=>{
    const vals=c.cutoffs.filter(x=>x[0]===b||b==='all').filter(x=>cat==='all'||x[1].startsWith(cat)).map(x=>x[3]).filter(v=>typeof v==='number');

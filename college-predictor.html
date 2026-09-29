@@ -33,7 +33,7 @@
 <script src="cap-cutoff-sources.js"></script>
 <script>
 const ROUND_INFO={cap1:{label:'CAP Round 1',index:6},cap2:{label:'CAP Round 2',index:5},cap3:{label:'CAP Round 3',index:4},cap4:{label:'CAP Round 4',index:3}};
-const collegeList=Array.isArray(window.COLLEGES)?window.COLLEGES:(typeof COLLEGES!=='undefined'?COLLEGES:[]);
+const collegeList = Array.isArray(window.COLLEGES) ? window.COLLEGES : (typeof COLLEGES !== 'undefined' ? COLLEGES : []);
 function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
 function cleanText(value){return String(value??'').trim();}
 function uniqueSorted(values){return [...new Set(values.map(cleanText).filter(Boolean))].sort((a,b)=>a.localeCompare(b));}
@@ -58,7 +58,9 @@ const locations=uniqueSorted(regionSet);
 const branchSelect=document.getElementById('branch');
 const regionSelect=document.getElementById('region');
 branchSelect.innerHTML='<option value="">Any Branch</option>'+branches.map(b=>'<option value="'+escapeHtml(b)+'">'+escapeHtml(b)+'</option>').join('');
+if (!branches.length) branchSelect.innerHTML += '<option disabled>No branches loaded</option>';
 regionSelect.innerHTML='<option value="">Any Location</option>'+locations.map(x=>'<option value="'+escapeHtml(x)+'">'+escapeHtml(x)+'</option>').join('');
+if (!locations.length) regionSelect.innerHTML += '<option disabled>No locations loaded</option>';
 function normalizeCategory(value){
  const v=String(value||'').trim().toUpperCase().replace(/\s+/g,' ');
  return v.replace(/^G(?=(OPEN|SC|ST|OBC|SEBC|VJ\/DT|NT-A|NT-B|NT-C|NT-D|SBC|EWS))|^L(?=(OPEN|SC|ST|OBC|SEBC|VJ\/DT|NT-A|NT-B|NT-C|NT-D|SBC|EWS))/,'');

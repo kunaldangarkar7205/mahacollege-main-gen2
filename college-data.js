@@ -2562,14 +2562,14 @@ const COLLEGES = [
       "accreditation": "The official B.Tech intake page marks Civil Engineering, Computer Science and Engineering, Electronics & Telecommunication Engineering and Mechanical Engineering as accredited in its displayed intake table.",
       "facilities": "The institute reports 40 laboratories, central library, computing facilities, AICTE Idea Lab, Innovation and Incubation Laboratories, National Digital Library access, Virtual Laboratory nodal-centre facilities, student clubs, hostel facilities and sports grounds.",
       "admission": "The institute's 2026-27 admission notices cover B.Tech CAP vacancy/institutional-level rounds and direct second-year admissions. The Maharashtra CET Cell controls the centralized CAP process and publishes the official cutoffs and seat matrices.",
-      "officialWebsite": "https://www.mgmcen.ac.in/",
+      "officialWebsite": "https://www.mgmmumbai.ac.in/mgmcet/",
       "cetProfile": "https://fe2026.mahacet.org/StaticPages/frmInstituteSummary?InstituteCode=03175",
       "sources": [
-        "https://www.mgmcen.ac.in/",
-        "https://mgmcen.ac.in/under-graduate.html",
-        "https://mgmcen.ac.in/trainingandplacement/faculty-profile.html",
-        "https://mgmcen.ac.in/trainingandplacement/training-placement.html",
-        "https://mgmcen.ac.in/mandatory-disclosure.html",
+        "https://www.mgmmumbai.ac.in/mgmcet/",
+        "https://www.mgmmumbai.ac.in/mgmcet/about",
+        "https://www.mgmmumbai.ac.in/mgmcet/departments",
+        "https://www.mgmmumbai.ac.in/mgmcet/",
+        "https://www.mgmmumbai.ac.in/mgmcet/",
         "https://fe2026.mahacet.org/StaticPages/frmInstituteSummary?InstituteCode=03175"
       ]
     }
@@ -57781,3 +57781,6 @@ if (mgm) {
     ]
   };
 }
+
+// Expose the college dataset to predictor and other pages.
+window.COLLEGES = COLLEGES;
