@@ -5,6 +5,63 @@
 .details-page{max-width:1200px;margin:35px auto;padding:24px}.hero-card,.details-section{background:var(--card-bg,#fff);padding:26px;border-radius:16px;margin-bottom:20px;box-shadow:0 4px 18px rgba(0,0,0,.06);border:1px solid rgba(100,116,139,.15)}
 .hero-card h1{margin:0 0 10px;line-height:1.25}.hero-meta{color:#64748b;margin:7px 0}.badges span{display:inline-block;background:#eef2ff;color:#1e3a8a;padding:7px 10px;border-radius:20px;margin:4px;font-size:13px}.profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.profile-item{border:1px solid #e5e7eb;border-radius:12px;padding:17px;background:rgba(248,250,252,.75)}.profile-item h3{margin:0 0 8px;font-size:16px}.profile-item p{margin:0;line-height:1.55;color:#334155}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{padding:16px;border-radius:12px;background:#f8fafc}.stat b{display:block;font-size:21px;margin-bottom:5px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:10px;border:1px solid #e2e8f0;text-align:left}th{background:#172554;color:#fff}.links a,.action-btn{display:inline-block;margin:6px 8px 0 0;padding:9px 12px;border-radius:8px;text-decoration:none;background:#2864e6;color:#fff}.secondary{background:#475569!important}.source{font-size:13px;color:#64748b}.notice{padding:14px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a}.empty{padding:18px;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px}.branch-list{columns:2;column-gap:35px;margin:0;padding-left:20px}.branch-list li{margin:6px 0}.back{margin-bottom:14px;display:inline-block}.verified{color:#047857;font-weight:700}.cutoff-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.summary-box{padding:14px;border-radius:10px;background:#f8fafc}.summary-box b{display:block;font-size:18px}
 @media(max-width:800px){.profile-grid,.stat-grid,.cutoff-summary{grid-template-columns:1fr}.details-page{padding:14px;margin:15px auto}.hero-card,.details-section{padding:18px}.branch-list{columns:1}}
+
+/* College Details page: keep every detail/cutoff component consistent with the selected theme.
+   Scoped only to this page; no other page styles or features are changed. */
+body.dark-mode .details-page .hero-card,
+body.dark-mode .details-page .details-section {
+    background: #111827 !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+body.dark-mode .details-page .hero-meta,
+body.dark-mode .details-page .source,
+body.dark-mode .details-page .source-note {
+    color: #cbd5e1 !important;
+}
+body.dark-mode .details-page .profile-item,
+body.dark-mode .details-page .stat,
+body.dark-mode .details-page .summary-box {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+body.dark-mode .details-page .profile-item p,
+body.dark-mode .details-page .source {
+    color: #cbd5e1 !important;
+}
+body.dark-mode .details-page .table-wrap {
+    background: #111827 !important;
+    border-color: #334155 !important;
+}
+body.dark-mode .details-page .table-wrap table,
+body.dark-mode .details-page .table-wrap thead,
+body.dark-mode .details-page .table-wrap tbody,
+body.dark-mode .details-page .table-wrap tr,
+body.dark-mode .details-page .table-wrap th,
+body.dark-mode .details-page .table-wrap td {
+    background: #111827 !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+body.dark-mode .details-page .table-wrap th {
+    background: #172554 !important;
+    color: #ffffff !important;
+}
+body.dark-mode .details-page .table-wrap tr:nth-child(even) td {
+    background: #162033 !important;
+}
+body.dark-mode .details-page .notice {
+    background: #172554 !important;
+    color: #dbeafe !important;
+    border-color: #334155 !important;
+}
+body.dark-mode .details-page .empty {
+    background: #3f2a14 !important;
+    color: #fde68a !important;
+    border-color: #92400e !important;
+}
+
 </style></head>
 <body id="auth-protected-page">
 <nav><div class="logo">🎓 MahaCollege</div><div class="menu"><a href="index.html">Home</a><a href="find-colleges.html">Colleges</a><a href="category-cutoffs.html">Cutoffs</a><a href="college-predictor.html">Predictor</a><a href="compare-colleges.html">Compare</a><a href="notifications.html">Notifications</a><a href="login.html" class="login-btn">Login</a></div></nav>
